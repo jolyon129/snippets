@@ -1,3 +1,7 @@
+# DomReady
+
+```javascript
+
 /**
  * Dom Ready
  */
@@ -11,3 +15,4 @@ var DOMReady = function(callback) {
  * BaseFun
  */
 
+```
