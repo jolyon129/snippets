@@ -1,15 +1,16 @@
-var path = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+'use strict'
 
-// path
-var ROOT_PATH = path.resolve(__dirname);
-var SRC_PATH = path.resolve(ROOT_PATH, 'src');
-var BUILD_PATH = path.resolve(ROOT_PATH, 'dist');
-var TPL_PATH = path.resolve(SRC_PATH, 'templates');
+let path = require('path')
+let webpack = require('webpack')
+let HtmlWebpackPlugin = require('html-webpack-plugin')
 
-// banner info
-var pkg = require('./package.json');
+// 路径
+let ROOT_PATH = path.resolve(__dirname)
+let SRC_PATH = path.resolve(ROOT_PATH, 'src')
+let BUILD_PATH = path.resolve(ROOT_PATH, 'dist')
+
+// info matter
+var pkg = require('./package.json')
 var banner = pkg.name + " " + pkg.version +
             "\n" + new Date().toLocaleDateString() + " " + pkg.author +
             "\n" + pkg.homepage;
@@ -22,8 +23,7 @@ module.exports = {
     output: {
         path: BUILD_PATH,
         publicPath: 'dist/',
-        filename: '[name].js',
-        chunkFilename: '[chunkhash:8].js'
+        filename: '[name].bundle.js'
     },
     module: {
         loaders: [{
@@ -35,27 +35,7 @@ module.exports = {
             loader: 'babel'
         }]
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: 'UnKnown Me',
-            template: path.resolve(TPL_PATH, 'index.html'),
-            filename: '../index.html'
-        })
-    ],
-    vue: {
-        autoprefixer: {
-          browsers: ['> 1%']
-        },
-        loaders: {
-          css: 'vue-style!css',
-          less: 'vue-style!css!less'
-        }
-    },
-    babel: {
-        presets: ["es2015", "stage-2"],
-        plugins: ["transform-runtime"],
-        comments: false
-    },
+    plugins: [],
     devServer: {
         historyApiFallback: true,
         noInfo: true,
@@ -65,25 +45,28 @@ module.exports = {
     devtool: 'eval-source-map'
 }
 
-// if (process.env.NODE_ENV === 'production') {
-//     delete module.exports.devtool;
+if (process.env.NODE_ENV === 'production') {
+    delete module.exports.devtool;
 
-//     module.exports.plugins = (module.exports.plugins || []).concat([
-//         new webpack.DefinePlugin({
-//             'process.env': {
-//                 NODE_ENV: '"production"'
-//             }
-//         }),
-//         new webpack.optimize.UglifyJsPlugin({
-//             compress: {
-//                 warnings: false
-//             },
-//             output: {
-//                 comments: false
-//             }
-//         }),
-//         new webpack.optimize.OccurenceOrderPlugin(),
-//         new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
-//         new webpack.BannerPlugin(banner)
-//     ])
-// }
+    module.exports.plugins = (module.exports.plugins || []).concat([
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: '"production"'
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            },
+            output: {
+                comments: false
+            }
+        }),
+        // This plugins optimizes chunks and modules by
+        // how much they are used in your app
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        // pack common chunks
+        new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
+        new webpack.BannerPlugin(banner)
+    ])
+}
