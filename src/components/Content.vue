@@ -1,6 +1,6 @@
 <template>
     <div>
-        this is home list view
+        this is content view
     </div>
 </template>
 

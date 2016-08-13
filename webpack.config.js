@@ -27,7 +27,7 @@ module.exports = {
     },
     module: {
         // avoid webpack trying to shim process
-        // noParse: /es6-promise\.js$/,
+        noParse: /es6-promise\.js$/,
         loaders: [{
             test: /\.vue$/,
             loader: 'vue'
