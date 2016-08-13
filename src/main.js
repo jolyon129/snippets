@@ -2,20 +2,21 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import App from './components/App.vue'
-import HomeView from './components/home.vue'
+import CatList from './components/CatList.vue'
 // install router
 Vue.use(Router)
 
 let router = new Router()
 
 router.map({
-    '/home':{
-        component:HomeView
+    '/cats':{
+        component:CatList
     }
 })
 
+// default redirect
 router.redirect({
-    '*': '/home'
+    '*': '/cats'
 });
 
 router.start(App,'#app')
