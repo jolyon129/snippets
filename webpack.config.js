@@ -2,7 +2,7 @@
 
 let path = require('path')
 let webpack = require('webpack')
-let HtmlWebpackPlugin = require('html-webpack-plugin')
+// let HtmlWebpackPlugin = require('html-webpack-plugin')
 
 // 路径
 let ROOT_PATH = path.resolve(__dirname)
@@ -26,6 +26,8 @@ module.exports = {
         filename: '[name].bundle.js'
     },
     module: {
+        // avoid webpack trying to shim process
+        noParse: /es6-promise\.js$/,
         loaders: [{
             test: /\.vue$/,
             loader: 'vue'
@@ -35,6 +37,10 @@ module.exports = {
             loader: 'babel'
         }]
     },
+    babel: {
+        presets: ['es2015'],
+        plugins: ['transform-runtime']
+    },
     plugins: [],
     devServer: {
         historyApiFallback: true,
@@ -42,6 +48,7 @@ module.exports = {
         stats: { colors: true },
         host: '0.0.0.0'
     },
+    // debug解释器
     devtool: 'eval-source-map'
 }
 
