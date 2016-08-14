@@ -8,8 +8,8 @@
             <cat-list></cat-list>
 
             <router-view
-                    class="view"
-                    transition
+                    class="view clearfix"
+                    transition="fade"
                     keep-alive
                     transition-mode="out-in">
             </router-view>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-    import CatList from './CatList.vue'
+    import CatList from './CatListView.vue'
 
 
     export default {
@@ -36,14 +36,32 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-
+    @import "../style/reset.css"
+    @import "../style/common.styl"
+    @import "../style/splendor.css"
+    /*layout*/
     .main
-        position relative
+        margin 5px auto
+        width 850px
+
+    .header
+        margin 10px
 
     .cat-list-view
         position absolute
-        left 0
+        left 20px
         width 120px
         border solid 1px #ddd
 
+    .post-list-view
+        border solid 1px #ddd
+        position relative
+        & .list-aside
+            width 150px
+            border solid 1px #ddd
+            float left
+        & .post-content-view
+            border solid 1px #ddd
+            margin-left 150px
+            width 690px
 </style>

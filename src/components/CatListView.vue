@@ -38,19 +38,6 @@
                 })
             })
 
-        },
-        route: {
-            /**
-             * http://router.vuejs.org/zh-cn/pipeline/data.html
-             * transition.next(data) 会为组件的 data 相应属性赋值
-             * data(transition) [-> Promise]
-             * 如果返回promise,则会执行resolve(data) -> transition.next(data)
-             */
-//            data(transition){
-//                return {
-//                    items: store.getCategoryList().then(items => items)
-//                }
-//            }
         }
     }
 </script>

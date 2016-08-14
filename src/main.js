@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import App from './components/App.vue'
-import PostList from './components/PostList.vue'
-import Content from './components/Content.vue'
+import PostListView from './components/PostListView.vue'
+import PostContentView from './components/PostContentView.vue'
 
 // install router
 Vue.use(Router)
@@ -13,11 +13,11 @@ let router = new Router()
 router.map({
     '/:cat':{
         name: 'cat',
-        component: PostList,
+        component: PostListView,
         subRoutes:{
-            'post/:post':{
+            'post/:title':{
                 name:'post',
-                component:Content
+                component:PostContentView
             }
         }
     }
