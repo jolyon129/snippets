@@ -1,19 +1,26 @@
 import  EventEmitter from 'events'
 import  {Promise}  from 'es6-promise'
-// import MarkdownIt from 'markdown-it'
-
+import MarkdownIt from 'markdown-it'
+import hljs from  'highlight.js'
 
 const CAT_LISTS_API_URL = 'https://api.github.com/repos/jolyon129/snippets/contents/_snippets_md'
 const POST_LISTS_API_URL = 'https://api.github.com/repos/jolyon129/snippets/contents/_snippets_md'
 
 let store = new EventEmitter()
-// const md = new MarkdownIt('commonmark', {
-//     html: true,
-//     typographer: true,
-//     highlight: ()=> {
-//
-//     }
-// })
+const md = new MarkdownIt({
+    html: true,
+    typographer: true,
+    breaks: true,
+    highlight: function (str, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+            try {
+                return hljs.highlight(lang, str).value;
+            } catch (__) {}
+        }
+
+        return ''; // use external default escaping
+    }
+})
 
 
 store.getCategoryList = (page = 1) => {
@@ -86,8 +93,8 @@ store.getPostContent = (cat, title)=> {
         xhr.setRequestHeader('Accept', 'application/vnd.github.VERSION.raw')
         xhr.onload = ()=> {
             if (xhr.status === 200) {
-                resolve(xhr.responseText)
-                // var result = md.render(xhr.responseText)
+                var result = md.render(xhr.responseText)
+                resolve(result)
             } else {
                 reject(new Error(xhr.statusText))
             }

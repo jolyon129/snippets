@@ -35,4 +35,5 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+    @import "../style/arduino-light.css"
 </style>

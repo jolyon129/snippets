@@ -19,12 +19,15 @@ module.exports = {
     entry: {
         app: path.resolve(SRC_PATH, 'main.js'),
         vendors: ['vue', 'vue-router', 'es6-promise']
+        // vendors: ['vue', 'vue-router', 'es6-promise', require.resolve('./src/highlight/highlight.pack.js')require.resolve('./src/highlight/highlight.pack.js')]
     },
     output: {
         path: BUILD_PATH,
         publicPath: 'dist/',
-        filename: '[name].bundle.js'
+        filename: '[name].bundle.js',
+        chunkFilename: '[chunkhash:8].js'
     },
+
     module: {
         // avoid webpack trying to shim process
         noParse: /es6-promise\.js$/,
@@ -35,13 +38,20 @@ module.exports = {
             test: /\.js$/,
             exclude: /node_modules/,
             loader: 'babel'
+        },{
+            test: /\.json$/,
+            loader: 'json'
+        },{
+            test: /\.css$/, loader: "style!css"
         }]
     },
     babel: {
         presets: ['es2015'],
         plugins: ['transform-runtime']
     },
-    plugins: [],
+    plugins: [
+
+    ],
     devServer: {
         historyApiFallback: true,
         noInfo: true,
@@ -53,6 +63,7 @@ module.exports = {
 }
 
 if (process.env.NODE_ENV === 'production') {
+    // disbale devtool
     delete module.exports.devtool;
 
     module.exports.plugins = (module.exports.plugins || []).concat([
@@ -73,7 +84,7 @@ if (process.env.NODE_ENV === 'production') {
         // how much they are used in your app
         new webpack.optimize.OccurrenceOrderPlugin(),
         // pack common chunks
-        new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
+        new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.bundle.js'),
         new webpack.BannerPlugin(banner)
     ])
 }
