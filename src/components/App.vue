@@ -38,7 +38,7 @@
 <style lang="stylus" rel="stylesheet/stylus">
     @import "../style/reset.css"
     @import "../style/common.styl"
-    @import "../style/splendor.css"
+    @import "../style/markdown.styl"
     /*layout*/
     .main
         margin 5px auto
