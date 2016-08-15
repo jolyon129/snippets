@@ -2,7 +2,7 @@
 title: 标签监控度检测
 ---
 
-```
+```css
 /* Empty Elements */
 div:empty, span:empty, li:empty, p:empty, td:empty, th:empty
 { padding: 20px; border: 5px dotted yellow !important; }
@@ -33,7 +33,7 @@ input[type="button"], big, tt
 { border: 5px solid #33FF00 !important; }
 ```
 
-```
+```css
 div:empty, span:empty,
 li:empty, p:empty,
 td:empty, th:empty {padding: 0.5em; background: yellow;}

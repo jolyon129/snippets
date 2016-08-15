@@ -47,7 +47,7 @@ title: css triangle
 }
 </style>
 
-```
+```css
 .arrow-up {
   width: 0;
   height: 0;

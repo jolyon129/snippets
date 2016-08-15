@@ -2,7 +2,7 @@
 title: 清除浮动
 ---
 
-```
+```css
 .clearfix:after {
      visibility: hidden;
      display: block;
@@ -18,7 +18,7 @@ title: 清除浮动
 /* close commented backslash hack */
 ```
 
-```
+```css
 .clearfix:after {
   visibility: hidden;
   display: block;

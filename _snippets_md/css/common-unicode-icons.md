@@ -37,7 +37,7 @@ title: Unicode icon
 .demo .alert:before             { content: "\26A0"; }
 </style>
 
-```
+``` css
 a[href^="mailto:"]:before { content: "\2709"; }
 .phone:before             { content: "\2706"; }
 .important:before         { content: "\27BD"; }

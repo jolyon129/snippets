@@ -72,13 +72,13 @@ title: 封页角
 }​
 </style>
 
-```
+```html
 <div class="wrapper">
        <div class="ribbon-wrapper-green"><div class="ribbon-green">NEWS</div></div>
 </div>​
 ```
 
-```
+```css
 .wrapper {
   margin: 50px auto;
   width: 280px;
