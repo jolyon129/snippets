@@ -1,9 +1,16 @@
 # git操作
 
+>常用git操作
+
 ## 撤销修改
-**舍弃所有未添加到暂存区的更改: ** `git checkout -- *`
-**舍弃暂存区中的文件: ** `git reset HEAD <file>... `
-**修改上一次commit中的数据: ** `git commit --amend`
+
+ 舍弃所有未添加到暂存区的更改: `git checkout -- `
+ 
+ 舍弃暂存区中的文件:  `git reset HEAD <file>... `
+ 
+修改上一次commit中的数据:   `git commit --amend`
+
+
 
 ## 删除分支
 
