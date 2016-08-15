@@ -1,5 +1,6 @@
 # SupportCSS3
 
+```javascript
 // 检测一般css3特性的函数
 var support_css3 = (function() {
    var div = document.createElement('div'),
@@ -21,3 +22,4 @@ var support_css3 = (function() {
       return false;
    };
 })();
+```
