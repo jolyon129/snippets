@@ -1,6 +1,3 @@
----
-title: 清除浮动
----
 
 ```css
 .clearfix:after {
