@@ -47,7 +47,9 @@ title: css triangle
 }
 </style>
 
+
 ```css
+
 .arrow-up {
   width: 0;
   height: 0;
@@ -83,4 +85,5 @@ ss
 
   border-right:10px solid blue;
 }
+
 ```
