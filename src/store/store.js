@@ -31,7 +31,7 @@ store.getCategoryList = (page = 1) => {
         } else {
             let xhr = new XMLHttpRequest()
 
-            xhr.open('GET', CAT_LISTS_API_URL)
+            xhr.open('GET', CAT_LISTS_API_URL+'?ref=posts')
             xhr.onload = () => {
                 let res = xhr.responseText
                 // cach the data
@@ -56,7 +56,7 @@ store.getPostList = (cat, page = 1)=> {
             resolve(JSON.parse(post_lists[cat]))
         } else {
             let xhr = new XMLHttpRequest()
-            xhr.open('GET', POST_LISTS_API_URL + `/${cat}`)
+            xhr.open('GET', POST_LISTS_API_URL + `/${cat}?ref=posts`)
             xhr.onload = () => {
                 if (xhr.status === 200) {
                     let res = xhr.responseText
@@ -84,7 +84,7 @@ store.getPostList = (cat, page = 1)=> {
 store.getPostContent = (cat, title)=> {
     return new Promise((resolve, reject)=> {
         const POST_CONTENT_API_URL =
-            `https://api.github.com/repos/jolyon129/snippets/contents/_snippets_md/${cat}/${title}`
+            `https://api.github.com/repos/jolyon129/snippets/contents/_snippets_md/${cat}/${title}?ref=posts`
         let xhr = new XMLHttpRequest()
         xhr.open('GET', POST_CONTENT_API_URL)
         // specify the request type
